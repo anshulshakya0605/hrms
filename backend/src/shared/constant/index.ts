@@ -6,3 +6,6 @@ export * from "./messages.constants.js";
 export * from './permissions.constants.js';
 export * from './role-permissions.constants.js';
 export * from './roles.constants.js';
+
+
+export * from './employee.constants.js'

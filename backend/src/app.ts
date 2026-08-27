@@ -13,6 +13,7 @@ import { pinoHttp } from "pino-http";
 
 import authRouter from './modules/auth/auth.routes.js'
 import teamRouter from './modules/teams/team.routes.js'
+import employeeRouter from './modules/employees/employee.routes.js'
 
 const app: Application = express();
 
@@ -45,6 +46,7 @@ app.get(`${APP_CONSTANTS.API_PREFIX}/health`, (_request, response) => {
 
 app.use(`${APP_CONSTANTS.API_PREFIX}/auth`, authRouter)
 app.use(`${APP_CONSTANTS.API_PREFIX}/teams`, teamRouter)
+app.use(`${APP_CONSTANTS.API_PREFIX}/employee`, employeeRouter)
 
 app.use(notFoundMiddleware);
 
