@@ -18,9 +18,7 @@ export class EmployeeRepository {
             joiningDate: Date
         }
     ): Promise<IEmployee> {
-        console.log("REPOSITORY: create started");
-    console.log("REPOSITORY DATA:", data);
-console.log("REPOSITORY: create completed");
+        
         return EmployeeModel.create(data);
     }
 

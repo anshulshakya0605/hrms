@@ -47,7 +47,7 @@ app.get(`${APP_CONSTANTS.API_PREFIX}/health`, (_request, response) => {
 
 app.use(`${APP_CONSTANTS.API_PREFIX}/auth`, authRouter)
 app.use(`${APP_CONSTANTS.API_PREFIX}/teams`, teamRouter)
-app.use(`${APP_CONSTANTS.API_PREFIX}/employee`, employeeRouter)
+app.use(`${APP_CONSTANTS.API_PREFIX}/employees`, employeeRouter)
 
 app.use(`${APP_CONSTANTS.API_PREFIX}/projects`, projectRouter)
 

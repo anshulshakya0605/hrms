@@ -1,4 +1,4 @@
-import type {Request, RequestHandler, Response } from "express";
+import type { Request, RequestHandler, Response } from "express";
 import { AuthService } from "./auth.service.js";
 import { HTTP_STATUS, SUCCESS_MESSAGES } from "../../shared/constant/index.js";
 import type { LoginInput, RegisterInput } from "./auth.types.js";
@@ -26,16 +26,16 @@ export class AuthController {
     });
   };
 
-  login: RequestHandler = async(
+  login: RequestHandler = async (
     request: Request<unknown, unknown, LoginInput>,
     response: Response
   ): Promise<void> => {
 
     const data = await this.authService.login(request.body);
     response.status(HTTP_STATUS.OK).json({
-        success:true,
-        message: SUCCESS_MESSAGES.LOGIN_SUCCESSFUL,
-        data
+      success: true,
+      message: SUCCESS_MESSAGES.LOGIN_SUCCESSFUL,
+      data
     })
   }
 
@@ -52,6 +52,6 @@ export class AuthController {
       message: SUCCESS_MESSAGES.USER_FETCHED_SUCCESSFULLY,
       data,
     });
-}
-  
+  }
+
 }

@@ -5,15 +5,16 @@ import { ERROR_CODES, ERROR_MESSAGES, HTTP_STATUS, ROLE_PERMISSIONS, type Permis
 export const authorize = (...requiredPermissions: Permission[]): RequestHandler => {
 
     return (request, _response, next) => {
+        
         if (!request.user) {
-            next(
+           return next(
                 new AppError(
                     ERROR_MESSAGES.UNAUTHORIZED,
                     HTTP_STATUS.UNAUTHORIZED,
                     ERROR_CODES.UNAUTHORIZED
                 )
             )
-            return
+            
         }
 
         const userPermissions = ROLE_PERMISSIONS[request.user.role];
@@ -23,15 +24,13 @@ export const authorize = (...requiredPermissions: Permission[]): RequestHandler 
         )
 
         if (!hasPermission) {
-            next(
+           return next(
                 new AppError(
                     ERROR_MESSAGES.FORBIDDEN,
                     HTTP_STATUS.FORBIDDEN,
                     ERROR_CODES.FORBIDDEN
                 )
             )
-
-            return
 
         }
 
