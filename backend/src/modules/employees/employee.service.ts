@@ -14,8 +14,13 @@ export class EmployeeService {
     }
 
     async createEmployee(input: CreateEmployeeInput) {
-        const existingEmployee = await this.employeeRepository.findByUserId(input.userId);
+        console.log("2. Service reached");
+    console.log("Input:", input);
 
+    console.log("3. Checking user...");
+        const existingEmployee = await this.employeeRepository.findByUserId(input.userId);
+console.log("4. User check completed");
+    console.log("User:", existingEmployee);
         if (existingEmployee) {
             throw new AppError(
                 EMPLOYEE_MESSAGE.ALREADY_EXISTS,
@@ -23,9 +28,11 @@ export class EmployeeService {
                 EMPLOYEE_ERROR_CODES.ALREADY_EXISTS
             )
         }
+        console.log("5. Creating employee...");
 
         const existingByCode = await this.employeeRepository.findByEmployeeCode(input.employeeCode)
-
+console.log("6. Employee created");
+    console.log("Employee:", existingByCode);
         if (existingByCode) {
             throw new AppError(
                 EMPLOYEE_MESSAGE.CODE_ALREADY_EXISTS,

@@ -9,22 +9,29 @@ import { EMPLOYEE_MESSAGE } from "../../shared/constant/employee.constants.js";
 export class EmployeeController {
     private readonly employeeService: EmployeeService;
 
-    constructor(){
+    constructor() {
         this.employeeService = new EmployeeService();
     }
 
     create = async (request: Request, response: Response): Promise<void> => {
-      
-        const employee = await this.employeeService.createEmployee(request.body as CreateEmployeeInput);
 
+        console.log("========== CREATE EMPLOYEE ==========");
+        console.log("1. Controller reached");
+        console.log("Request body:", request.body);
+        console.log("Authenticated user:", request.user);
+
+        const employee = await this.employeeService.createEmployee(request.body as CreateEmployeeInput);
+console.log("6. Service completed");
+    console.log("Service result:", employee);
         response.status(HTTP_STATUS.CREATE).json({
             success: true,
             message: EMPLOYEE_MESSAGE.CREATED,
             data: employee
         })
+        console.log("7. Response sent");
     }
 
-    getAll = async(request: Request, response: Response): Promise<void> => {
+    getAll = async (request: Request, response: Response): Promise<void> => {
         const result = await this.employeeService.getEmployees(request.query as unknown as EmployeeQuery)
 
         response.status(HTTP_STATUS.OK).json({

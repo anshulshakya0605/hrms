@@ -9,12 +9,43 @@ import { employeeController } from "./employee.controller.js";
 
 const router = Router();
 
-router.post("/",
+router.post(
+    "/",
+
+    (request, _response, next) => {
+        console.log("EMPLOYEE ROUTE: reached");
+        next();
+    },
+
+    (request, _response, next) => {
+        console.log("BEFORE AUTHENTICATE");
+        next();
+    },
+
     authenticate,
+
+    (request, _response, next) => {
+        console.log("AFTER AUTHENTICATE");
+        console.log("Authenticated user:", request.user);
+        next();
+    },
+
     authorize(PERMISSIONS.EMPLOYEE_CREATE),
+
+    (request, _response, next) => {
+        console.log("AFTER AUTHORIZATION");
+        next();
+    },
+
     validate(createEmployeeSchema),
+
+    (request, _response, next) => {
+        console.log("AFTER VALIDATION");
+        next();
+    },
+
     employeeController.create,
-)
+);
 
 router.get("/",
     authenticate,
